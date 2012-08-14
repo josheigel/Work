@@ -1,0 +1,377 @@
+/*------------------------------------*\
+Client Name
+
+Author:		  andCulture, info@andCulture.com
+Published:	April 13, 2012
+\*------------------------------------*/
+
+/*------------------------------------*\
+CONTENTS
+\*------------------------------------*/
+/*
+COLOR VARIABLES
+FONT/PROPERTY VARIABLES
+UTILITIES
+FONT MIXINS
+PROPERTY MIXINS
+CSS3 MIXINS
+CSS3 GRADIENT BUNDLE
+CSS3 FLEXBOX MIXIN
+
+*/
+
+
+/*------------------------------------*\
+$COLOR VARIABLES
+\*------------------------------------*/
+/*--- Grays ---*/
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+
+/*--- Scaffolding ---*/
+@linkColor:         #69A;
+@textColor:         #444;
+@headingColor:      #E60;
+@headingAltColor:   #EF0;
+
+/* ACCENT COLORS*/
+@blue:      #0088CC;
+@darkBlue:  #005580;
+
+
+
+
+
+/*------------------------------------*\
+$FONT/PROPERTY VARIABLES
+\*------------------------------------*/
+/*--- Type ---*/
+@baseFontFamily:      sans-serif;
+@baseFontSize:        14px;
+@baseLineHeight:      18px;
+@altFontFamily:       Georgia, "Times New Roman", Times, serif;
+@headingsFontFamily:  inherit;
+
+/*--- Property ---*/
+@gray-border: 1px solid #CCC;
+
+/*--- Images ----*/
+@sprite: '../images/sprite.png';
+
+
+
+
+
+/*------------------------------------*\
+$UTILITIES
+\*------------------------------------*/
+/* New micro-clearfix for containing floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
+.group() {
+	zoom: 1;
+	&:before, &:after {
+		content: ""; display: table;
+	}
+	&.group:after {
+		clear: both;
+	}
+}
+.size(@width: 50px, @height: 50px) {
+  width: @width;
+  height: @height;
+}
+
+.ie7-inline-block() { display: inline-block; }
+/* Non-semantic helper classes */
+/* Image Replacement - http://nicolasgallagher.com/another-css-image-replacement-technique */
+.ir {
+  display: block;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+.ir br { display: none; }
+/* Hide for both screenreaders and browsers: css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hidden { display: none; visibility: hidden; }
+/* Hide only visually, but have it available for screenreaders: by Jon Neal. www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+
+
+
+
+/*------------------------------------*\
+$FONT MIXINS
+\*------------------------------------*/
+#font {
+  #family {
+    .serif() {
+      font-family: serif;
+    }
+    .sans-serif() {
+      font-family: sans-serif;
+    }
+  }
+  .shorthand(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .serif;
+    #font > .shorthand(@size, @weight, @lineHeight);
+  }
+  .sans-serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .sans-serif;
+    #font > .shorthand(@size, @weight, @lineHeight);
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+$PROPERTY MIXINS
+\*------------------------------------*/
+.reset() {
+	margin: 0;
+	padding: 0; 
+	list-style: none;
+	li {
+		margin: 0;
+		padding: 0;
+	}
+}
+.right-arrow() {
+	margin-left: .3em;
+	content: "\203A";
+}
+.left-arrow() {
+	margin-left: .3em;
+	content: "\2039";
+}
+
+
+
+
+
+
+/*------------------------------------*\
+$CSS3 MIXINS
+\*------------------------------------*/
+
+.border-radius(@radius: 5px) {
+	-webkit-border-radius: @radius;
+	   -moz-border-radius: @radius;
+	        border-radius: @radius;
+}
+.bg-clip-padding() {
+	-webkit-background-clip: padding;
+	   -moz-background-clip: padding;
+	   -moz-background-clip: padding-box;
+	        background-clip: padding-box;
+}
+.bg-clip-border() {
+	-webkit-background-clip: border;
+	   -moz-background-clip: border;
+	   -moz-background-clip: border-box;
+	        background-clip: border-box;
+}
+.box-shadow(@inset: inset, @x: 0, @y: 0, @blur: 0, @length: 0, @color: rgba(0,0,0,.25)) when (@inset = "inset") {
+	-webkit-box-shadow: @arguments;
+	   -moz-box-shadow: @arguments;
+	        box-shadow: @arguments;
+}
+.box-shadow(@x: 0, @y: 0, @blur: 0, @length: 0, @color: rgba(0,0,0,.25)) {
+	-webkit-box-shadow: @arguments;
+	   -moz-box-shadow: @arguments;
+	        box-shadow: @arguments;
+}
+.content-columns(@columnCount, @columnGap: 20px) {
+	-webkit-column-count: @columnCount;
+	   -moz-column-count: @columnCount;
+	        column-count: @columnCount;
+	  -webkit-column-gap: @columnGap;
+	     -moz-column-gap: @columnGap;
+	          column-gap: @columnGap;
+}
+.ellipsis {
+	white-space: nowrap;
+	width: 100%;                   /* IE6 needs any width */
+	overflow: hidden;              /* "overflow" value must be different from "visible" */ 
+	-o-text-overflow: ellipsis;    /* Opera 9-10 */
+	text-overflow:    ellipsis;    /* IE, WebKit (Safari, Chrome), Firefox 7, Opera 11 */
+}
+.opacity(@opacity: 100) {
+	filter: e(%("alpha(opacity=%d)", @opacity));
+	-khtml-opacity: @opacity / 100;
+	  -moz-opacity: @opacity / 100;
+	       opacity: @opacity / 100;
+}
+.rotate(@angle: 90deg) {
+	-webkit-transform: rotate(@angle);
+	   -moz-transform: rotate(@angle);
+	    -ms-transform: rotate(@angle);
+	     -o-transform: rotate(@angle);
+	        transform: rotate(@angle);
+}
+.transition(@transition: all .3s ease) {
+	-webkit-transition: @transition;
+	   -moz-transition: @transition;
+	    -ms-transition: @transition;
+	     -o-transition: @transition;
+	        transition: @transition;
+}
+.transform-origin(@horizontal: 50%, @vertical: 50%) {
+	-webkit-transform-origin: @horizontal @vertical;
+	   -moz-transform-origin: @horizontal @vertical;
+	    -ms-transform-origin: @horizontal @vertical;
+	     -o-transform-origin: @horizontal @vertical;
+	        transform-origin: @horizontal @vertical;
+}
+
+
+
+
+
+
+/*------------------------------------*\
+$CSS3 GRADIENT BUNDLE
+\*------------------------------------*/
+
+#gradient {
+  .horizontal(@startColor: #555, @endColor: #333) {
+    background-color: @endColor;
+    background-image: -moz-linear-gradient(left, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(left, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(left, @startColor, @endColor); // Le standard
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor)); // IE9 and down
+  }
+  .vertical(@startColor: #555, @endColor: #333) {
+    background-color: mix(@startColor, @endColor, 60%);
+    background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(top, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(top, @startColor, @endColor); // The standard
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down
+  }
+  .directional(@startColor: #555, @endColor: #333, @deg: 45deg) {
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(@deg, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(@deg, @startColor, @endColor); // IE10
+    background-image: -webkit-linear-gradient(@deg, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(@deg, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(@deg, @startColor, @endColor); // The standard
+  }
+  .vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+    background-color: mix(@midColor, @endColor, 80%);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
+    background-image: -webkit-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: -moz-linear-gradient(top, @startColor, @midColor @colorStop, @endColor);
+    background-image: -ms-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: -o-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+  .radial(@innerColor: #555, @outerColor: #333)  {
+    background-color: @outerColor;
+    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@innerColor), to(@outerColor));
+    background-image: -webkit-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -moz-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -ms-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -o-radial-gradient(circle, @innerColor, @outerColor);
+    background-repeat: no-repeat;
+  }
+  .striped(@color, @angle: -45deg) {
+    background-color: @color;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,.15)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,.15)), color-stop(.75, rgba(255,255,255,.15)), color-stop(.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+  }
+}
+/*--- Reset filters for IE ---*/
+.reset-filter() {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+
+
+
+
+
+/*------------------------------------*\
+$CSS3 FLEXBOX MIXIN
+\*------------------------------------*/
+#flexbox {
+	/* #flexbox > .display-box; must be used along with other flexbox mixins */
+	.display-box { 
+		display: -moz-box;
+		display: -webkit-box;
+		display: box;
+	}
+	/* Box align [ start | end | center | baseline | stretch ] */
+	.box-align(@alignment: stretch) {
+		-moz-box-align: @alignment;
+		-webkit-box-align: @alignment;
+		box-align: @alignment;
+	}
+	/* Box direction [ normal | reverse | inherit ] */
+	.box-direction(@direction: normal) {
+		-moz-box-direction: @direction;
+		-webkit-box-direction: @direction;
+		box-direction: @direction;
+	}
+	/* Box flex [ integer ] */
+	.box-flex(@flex: 0) {
+		-moz-box-flex: @flex;
+		-webkit-box-flex: @flex;
+		box-flex: @flex;
+	}
+	/* Box flex group [ integer ] */
+	.box-flex-group(@group: 1) {
+		-moz-box-flex-group: @group;
+		-webkit-box-flex-group: @group;
+		box-flex-group: @group;
+	}
+	/* Box orientation [ horizontal | vertical | inline-axis | block-axis | inherit ] */
+	.box-orient(@orientation: horizontal) {
+		-moz-box-orient: @orientation;
+		-webkit-box-orient: @orientation;
+		box-orient: @orientation;
+	}
+	/* Box ordinal group [ integer ] */
+	.box-ordinal-group(@group: 1) {
+		-moz-box-ordinal-group: @group;
+		-webkit-box-ordinal-group:@group;
+		box-flex-ordinal-group: @group;
+	}
+	/* Box pack [ start | end | center | justify ] */
+	.box-pack(@pack: start) {
+		-moz-box-pack: @pack;
+		-webkit-box-pack: @pack;
+		box-pack: @pack;
+	}
+}

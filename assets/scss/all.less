@@ -1,0 +1,441 @@
+/*------------------------------------*\
+Client Name
+
+Author:		  andCulture, info@andCulture.com
+Published:	April 13, 2012
+\*------------------------------------*/
+
+/*------------------------------------*\
+CONTENTS
+\*------------------------------------*/
+/*
+BOOTSTRAP
+NORMALIZE (RESET)
+SHARED
+MAIN
+NAV
+MEDIA
+ISLAND
+TYPE
+IMAGES
+TABLES
+MISC
+MEDIA QUERIES
+
+*/
+
+@import "_bootstrap";
+@import "_normalize";
+@import "_grid";
+
+
+/*------------------------------------*\
+$SHARED
+\*------------------------------------*/
+
+/* Document Styles */
+html { background: #FFF; overflow-y: scroll; }
+body {
+  color: @textColor;
+  #font > .serif;
+}
+
+/* Common margin-bottom for vertical rhythm. */
+h1,h2,h3,h4,h5,h6,
+ul,ol,dl,
+p,
+table,
+form,
+pre,
+hr,
+button,
+select,
+input,
+textarea,
+.source{
+  margin-bottom: 20px;
+  margin-bottom: 1rem;
+}
+h2,h3,h4,h5,h6 {
+  margin: 1.5em 0 .75em;
+  color: @headingColor;
+  font-weight: normal;
+}
+
+/* Default indentation value for lists etc. */
+ul,ol,dd { margin-left: 1em; }
+ol { list-style-type: decimal; }
+li { margin: .5em 0; }
+dt { margin-bottom: .2em; }
+ol li ol li { list-style-type: lower-alpha; }
+ol li ol li ol li { list-style-type: lower-roman; }
+li, dt, dd { line-height: 1.5; }
+
+/* Default font weights */
+th,dt { font-weight: 700; }
+
+/* Default form pointer, colors, etc. */
+input,
+textarea {
+  background: #FFF;
+  color: @textColor;
+}
+label,
+.text-input,
+textarea,
+input[type=button],
+input[type=submit],
+button
+.btn, { cursor: pointer; }
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus { cursor: text; }
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+fieldset { border: 0; }
+button { width: auto; overflow: visible; }
+
+
+
+
+
+/*------------------------------------*\
+$MAIN
+\*------------------------------------*/
+
+/*--- SITE HEADER ---*/
+.site-header {
+	background: #DDD;
+}
+
+
+/*--- SITE FOOTER ---*/
+.site-footer {
+	padding-bottom: 50px;
+	clear: both;
+}
+
+/*--- WRAPS ---*/
+.wrap {
+	margin: 0 auto;
+	max-width: 960px;
+	overflow: hidden;
+}
+
+/*--- LOGO ---*/
+.logo {
+  margin-top: 0;
+	margin-left: 18px;
+	width: 200px;
+	img {
+		display: block;
+	}
+}
+
+
+
+
+
+
+/*------------------------------------*\
+$GRID
+\*------------------------------------*/
+#grid > .fluid(5.801104972%, 2.762430939%);
+
+
+
+
+
+
+/*------------------------------------*\
+$NAV
+\*------------------------------------*/
+/*
+As per: csswizardry.com/2011/09/the-nav-abstraction
+*/
+.nav{
+  list-style:none;
+  margin-left:0;
+  li {
+    display: inline;
+  }
+  a {
+    display:inline-block;
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+$MEDIA
+\*------------------------------------*/
+/*
+As per: stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
+*/
+.media { display:block; }
+.img {
+  float:left;
+  margin-right: .25em;
+}
+.img-rev {
+  float:right;
+  margin-left: .25em;
+}
+.img img { display:block; }    
+.bd {
+  overflow:hidden;
+  &:last-child { margin-bottom: 0; }
+}
+
+/*
+Islets have a slightly smaller padding value than normal.
+With this in mind we make the `.img` spacing a little smaller for visual consistency. */
+.islet .img{
+  margin-right:Xpx;
+}
+.islet .img-rev{
+  margin-left:Xpx;
+}
+
+
+
+
+
+/*------------------------------------*\
+$ISLAND
+\*------------------------------------*/
+/* As per csswizardry.com/2011/10/the-island-object */
+.island,
+.islet{
+    display:block;
+    -webkit-border-radius:Xpx;
+       -moz-border-radius:Xpx;
+            border-radius:Xpx;
+}
+.island{
+    padding:Xpx;
+}
+    .island > :last-child,
+    .islet > :last-child{
+        margin-bottom:0;
+    }
+
+/* Just like `.island`, only smaller. */
+.islet{
+    padding:Xpx;
+}
+
+
+
+
+
+/*------------------------------------*\
+$TYPE
+\*------------------------------------*/
+/* As per csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css */
+p { margin-bottom: 1em; }
+
+/* Headings - Generic heading class, as per: jsfiddle.net/csswizardry/yFQDP */
+.hN {}
+
+h1,.alpha {
+  font-size: 42px;
+  font-size: 3rem;
+  line-height: 1.2;
+}
+h2,.beta {
+  font-size: 36px;
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+h3,.gamma {
+  font-size: 32px;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+h4,.delta {
+  font-size: 28px;
+  font-size: 2.375rem;
+  line-height: 1.2;
+}
+h5,.epsilon {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+h6,.zeta {
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 1.2;
+}
+
+/* Small */
+small,.milli {
+  font-size: 10px;
+  font-size: .625rem;
+  line-height: 1.1;
+}
+/* Large */
+.giga {
+  font-size: 56px;
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+.mega {
+  font-size: 62px;
+  font-size: 3.875rem;
+  line-height: 1.2;
+}
+.kilo {
+  font-size: 72px;
+  font-size: 4.5rem;
+  line-height: 1.2;
+}
+
+/* Super/sub-scripts, etc.  */
+sup, sub {
+  height: 0;
+  font-size: smaller;
+  line-height: 1;
+  vertical-align: baseline;
+  position: relative; 
+}
+sup { bottom: 1ex; }
+sub { top: .5ex; }
+
+/* Text Selection */
+::-moz-selection{ background: #BDF; text-shadow: none; }
+::selection { background: #BDF; text-shadow: none; }
+
+/*--- LINKS ---*/
+a,a:active,a:visited {
+  color: @linkColor;
+  text-decoration: none;
+  -webkit-transition: color .3s ease;
+     -moz-transition: color .3s ease;
+       -o-transition: color .3s ease;
+          transition: color .3s ease;
+  &:hover {
+    color: darken(@linkColor, 10%);
+  }
+}
+a:hover,
+a:focus,
+a:active {
+  outline: none;
+  text-decoration:underline;
+}
+a:link { -webkit-tap-highlight-color: #BDF; }
+.current a {
+  cursor:text;
+  text-decoration:underline;
+}
+a.more:after { .right-arrow; }
+a.back:before { .left-arrow; }
+
+/*--- LISTS ---*/
+li > ul,
+li > ol {
+  margin-bottom:0;
+}
+
+/*--- QUOTES ---*/
+/* Big up @boblet: html5doctor.com/blockquote-q-cite */
+q { quotes:"‘" "’" "“" "”"; }
+
+q:before { content:"‘"; content:open-quote; }
+q:after { content:"’"; content:close-quote; }
+
+q q:before { content: "“"; content: open-quote; }
+q q:after { content: "”"; content: close-quote; }
+
+blockquote { quotes: "“" "”"; }
+blockquote p:before { content: "“"; content: open-quote; }
+blockquote p:after { content: ""; content: no-close-quote; }
+blockquote p:last-of-type:after { content: "”"; content: close-quote; }
+
+blockquote {
+  text-indent:-0.4em;
+}
+.source {
+  display:block;
+  text-indent:0;
+  margin-top: -16px;
+  margin-top: -1rem;
+}
+.source:before {
+  content:"—";
+}
+
+
+
+/*------------------------------------*\
+$IMAGES
+\*------------------------------------*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+td, td img { vertical-align: top; }
+
+
+
+
+
+/*------------------------------------*\
+$TABLES
+\*------------------------------------*/
+table {
+  width: 100%;
+}
+
+
+
+
+
+/*------------------------------------*\
+$MISC
+\*------------------------------------*/
+.accessibility { position: absolute; left: -10000em; }
+[dir=rtl] .accessibility { left: auto; right: -10000em; }
+
+/* Helper class to carry brand colours etc as per speakerdeck.com/u/csswizardry/p/breaking-good-habits?slide=31 */
+.brand {
+  color: @textColor;
+}
+
+/*--- TEXT STYLES ---*/
+.intro {
+  color: @headingColor;
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/*--- LINK LIST ---*/
+.link-list { list-style: none; }
+.link-list li { text-indent: -.8em; }
+.link-list li:before { margin-right: .5em; color: @linkColor; font-weight: bold; content: "\203A"; }
+
+/*--- GLOSSARY LIST ---*/
+.def { border-top: @gray-border; }
+.def dt { margin-top: .5em; width: 100%; float: left; }
+.def dd { margin: 0; padding: .5em 0 .5em 180px; border-bottom: @gray-border; }
+
+/*--- FLOATING ---*/
+.left { margin: 0 20px 10px 0; float: left; }
+.right { margin: 0 0 10px 20px; float: right; }
+
+
+/*------------------------------------*\
+$MEDIA QUERIES
+\*------------------------------------*/
+@import "print";
+@import "responsive";

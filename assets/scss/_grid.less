@@ -1,0 +1,120 @@
+/*------------------------------------*\
+$CONTENTS
+\*------------------------------------*/
+/*
+GRID VARIABLES
+THE GRID
+  
+*/
+/*------------------------------------*\
+$GRID VARIABLES
+\*------------------------------------*/
+/*--- Default grid ---*/
+@gridColumns:             12;
+@gridColumnWidth:         60px;
+@gridGutterWidth:         20px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+
+/*--- Fluid grid ---*/
+@fluidGridColumnWidth:    6.382978723%;
+@fluidGridGutterWidth:    2.127659574%;
+
+
+
+
+
+/*------------------------------------*\
+$GRID MIXINS
+\*------------------------------------*/
+.container-fixed() {
+  margin-left: auto;
+  margin-right: auto;
+  .clearfix();
+}
+
+.tableColumns(@columnSpan: 1) {
+  float: none; /* undo default grid column styles */
+  width: ((@gridColumnWidth) * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1)) - 16; /* 16 is total padding on left and right of table cells */
+  margin-left: 0; /* undo default grid column styles */
+}
+
+.makeRow() {
+  margin-left: @gridGutterWidth * -1;
+  .clearfix();
+}
+.makeColumn(@columns: 1) {
+  float: left;
+  margin-left: @gridGutterWidth;
+  width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+}
+
+
+
+
+
+/*------------------------------------*\
+$THE GRID
+\*------------------------------------*/
+#grid {
+  /*--- Core Grid ---*/
+  .core (@gridColumnWidth, @gridGutterWidth) {
+    .spanX (@index) when (@index > 0) {
+      (~".span@{index}") { .span(@index); }
+      .spanX(@index - 1);
+    }
+    .spanX (0) {}
+    .offsetX (@index) when (@index > 0) {
+      (~".offset@{index}") { .offset(@index); }
+      .offsetX(@index - 1);
+    }
+    .offsetX (0) {}
+    .offset (@columns) {
+      margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+    }
+    .span (@columns) {
+      width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+    }
+    .row {
+      margin-left: @gridGutterWidth * -1;
+      .clearfix();
+    }
+    [class*="span"] {
+      float: left;
+      margin-left: @gridGutterWidth;
+    }
+    /* Set the container width, and override it for fixed navbars in media queries */
+    .container,
+    .navbar-fixed-top .container,
+    .navbar-fixed-bottom .container { .span(@gridColumns); }
+
+    /* generate .spanX and .offsetX */
+    .spanX (@gridColumns);
+    .offsetX (@gridColumns);
+  }
+
+  /*--- Fluid Grid ---*/
+  .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
+    .spanX (@index) when (@index > 0) {
+      (~"> .span@{index}") { .span(@index); }
+      .spanX(@index - 1);
+    }
+    .spanX (0) {}
+    .span (@columns) {
+      width: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1));
+    }
+    .row-fluid {
+      width: 100%;
+      overflow: hidden;
+      clear: both;
+      > [class*="span"] {
+        float: left;
+        margin-left: @fluidGridGutterWidth;
+      }
+      > [class*="span"]:first-child {
+        margin-left: 0;
+      }
+      .spanX (@gridColumns);
+    }
+  }
+}
