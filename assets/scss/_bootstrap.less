@@ -51,9 +51,8 @@ $FONT/PROPERTY VARIABLES
 \*------------------------------------*/
 /*--- Type ---*/
 @baseFontFamily:      'Courier New', Courier, monospace;
-@baseFontSize:        14px;
+@baseFontSize:        15px;
 @baseLineHeight:      20px;
-@altFontFamily:       Georgia, "Times New Roman", Times, serif;
 @headingsFontFamily:  inherit;
 
 /*--- Property ---*/
@@ -114,6 +113,9 @@ $FONT MIXINS
 \*------------------------------------*/
 #font {
   #family {
+  	.mono() {
+  		font-family: 'Courier New', Courier, monospace;
+  	}
     .serif() {
       font-family: serif;
     }
@@ -125,6 +127,10 @@ $FONT MIXINS
     font-size: @size;
     font-weight: @weight;
     line-height: @lineHeight;
+  }
+  .mono(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .mono;
+    #font > .shorthand(@size, @weight, @lineHeight);
   }
   .serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
     #font > #family > .serif;

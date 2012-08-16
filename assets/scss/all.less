@@ -36,7 +36,7 @@ $SHARED
 html { background: #FFF; overflow-y: scroll; }
 body {
   color: @textColor;
-  #font > .serif;
+  #font > .mono;
 }
 
 /* Common margin-bottom for vertical rhythm. */
@@ -122,10 +122,22 @@ $MAIN
 
 /*--- WRAPS ---*/
 .wrap {
-	margin: 2em;
-	width: 95%;
+	margin: 2em auto;
+  padding: 0;
+	width: 90%;
+  border: 2px solid #000;
+  border-width: 2px 0;
 	overflow: hidden;
 }
+
+.wrap .syntaxhighlighter { margin: 0 !important; }
+
+.section {
+  margin-bottom: 2em;
+}
+
+.selector { color: blue; }
+.property { margin-left: 2em; }
 
 
 
@@ -230,7 +242,7 @@ $ISLAND
 $TYPE
 \*------------------------------------*/
 /* As per csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css */
-p { margin-bottom: 1em; }
+p { margin: 0; }
 
 /* Headings - Generic heading class, as per: jsfiddle.net/csswizardry/yFQDP */
 .hN {}
